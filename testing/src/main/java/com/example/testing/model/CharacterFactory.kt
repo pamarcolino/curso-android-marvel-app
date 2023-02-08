@@ -6,12 +6,14 @@ class CharacterFactory {
 
     fun create(hero: Hero) = when(hero) {
         Hero.ThreeDMan -> Character(
-                "3d-Man",
-                "url.jpg"
+            id = 1011334,
+            name = "3d-Man",
+            imageUrl = "url"
         )
         Hero.ABomb -> Character(
-        "A-Bomb",
-        "url.jpg"
+            id = 1011335,
+            name = "A-Bomb",
+            imageUrl = "url"
         )
     }
 

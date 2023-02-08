@@ -1,30 +1,22 @@
 package com.example.marvelapp.presentation.characters
 
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.example.core.usecase.GetCharactersUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
-import com.example.core.domain.model.Character
 import com.example.testing.MainCoroutineRule
 import com.example.testing.model.CharacterFactory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.resetMain
-import org.junit.After
+import kotlinx.coroutines.test.*
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class CharactersViewModelTest {
@@ -57,7 +49,7 @@ class CharactersViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `should validate the paging data object value when calling charactersPagingData`() = runBlockingTest {
+    fun `should validate the paging data object value when calling charactersPagingData`() = runTest {
 
         whenever(
             getCharactersUseCase.invoke(any())
@@ -73,7 +65,7 @@ class CharactersViewModelTest {
     @ExperimentalCoroutinesApi
     @Test(expected = RuntimeException::class)
     fun `should throw an exception when the calling to the use case returns an exception`() =
-    runBlockingTest {
+        runTest {
         whenever(
             getCharactersUseCase.invoke(any())
         ).thenThrow(RuntimeException())
