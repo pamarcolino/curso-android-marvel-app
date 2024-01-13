@@ -24,4 +24,4 @@
         android:text="@string/favorites_no_favorites_in_the_list"
         app:drawableTopCompat="@drawable/ic_no_favorites" />
 
-</ViewFlipper>​
+</ViewFlipper>
