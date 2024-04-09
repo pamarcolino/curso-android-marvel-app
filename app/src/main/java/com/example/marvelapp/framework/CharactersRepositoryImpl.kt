@@ -24,17 +24,14 @@ class CharactersRepositoryImpl @Inject constructor(
     private val database: AppDatabase
 ) : CharactersRepository {
 
-    override fun getCharacters(query: String): PagingSource<Int, Character> {
-        return CharactersPagingSource(remoteDataSource, query)
-    }
-
     override fun getCachedCharacters(
         query: String,
+        orderBy: String,
         pagingConfig: PagingConfig
     ): Flow<PagingData<Character>> {
         return Pager(
             config = pagingConfig,
-            remoteMediator = CharactersRemoteMediator(query, database, remoteDataSource)
+            remoteMediator = CharactersRemoteMediator(query, orderBy, database, remoteDataSource)
         ) {
             database.characterDao().pagingSource()
         }.flow.map { pagingData ->
