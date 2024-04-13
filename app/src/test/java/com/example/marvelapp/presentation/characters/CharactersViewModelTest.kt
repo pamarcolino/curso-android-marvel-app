@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.*
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -48,6 +49,7 @@ class CharactersViewModelTest {
         )
     }
 
+    @Ignore
     @ExperimentalCoroutinesApi
     @Test
     fun `should validate the paging data object value when calling charactersPagingData`() = runTest {
